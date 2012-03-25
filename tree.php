@@ -1,6 +1,6 @@
 <?
 /**
- * Класс для работы с деревом
+ * Tree class
  */
 class Tree
 {
@@ -8,22 +8,25 @@ class Tree
 	var $from = null;
 
 	/**
-	 * @var Уровень глубины
+	 * @var deep level
 	 */
 	public $level = null;
 
+	/**
+	 * @var bool flag of end-of-the-word
+	 */
 	public $last = false;
 
 	/**
-	 * @var array Потомки
+	 * @var array children
 	 */
 	public $children = null;
 
 
 	/**
-	 * Конструктор
-	 * @param $c
-	 * @param $from
+	 * Constructor
+	 * @param $c - letter
+	 * @param $from - start line position in source file
 	 */
 	public function __construct($c = null, $from = null, $level = -1) {
 		$this->letter = $c;
@@ -32,10 +35,9 @@ class Tree
 	}
 
 	/**
-	 * Добавление потомка
-	 * @param $c
-	 * @param int $from
-	 * @return Tree
+	 * Adds child
+	 * @param $c - letter
+	 * @param int $from - start line position in source file
 	 */
 	public function addChild($c , $from = 0)
 	{
