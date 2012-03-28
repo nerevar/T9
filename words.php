@@ -59,14 +59,20 @@ function count_children(&$tree) {
  * @param $tree
  * @param $fp
  */
-function save_tree(&$tree, $fp) {
+function save_tree(&$tree, $fp, $is_last_leaf = 0) {
 	fwrite($fp, ($tree->letter ? $tree->letter : ' ')); // letter
-	fwrite($fp, ($tree->last ? '+' : '-')); // flag of end-of-the-word
+
+	if ($is_last_leaf) {
+		fwrite($fp, ($tree->last ? '*' : '/')); // flag of end-of-the-word
+	} else {
+		fwrite($fp, ($tree->last ? '+' : '-')); // flag of end-of-the-word
+	}
+
 	fwrite($fp, pack('L', count_children($tree))); // packed 4 bytes count of children
 
 	// recursively saves each child
 	for ($i = 0; $i < count($tree->children); $i++) {
-		save_tree($tree->children[$i], $fp);
+		save_tree($tree->children[$i], $fp, ($i == count($tree->children) - 1) ? 1 : 0);
 	}
 }
 
@@ -99,11 +105,18 @@ recurse($tree);
 $time_end = microtime(true);
 $time = $time_end - $time_start;
 
-print "Runs $time seconds\n";
+print "Create Tree $time seconds\n";
 
 dp($tree);
+
+$time_start = microtime(true);
 
 // saves binary serialized tree to file
 $fp = fopen('tree_b.txt', 'w+b');
 save_tree($tree, $fp);
 fclose($fp);
+
+$time_end = microtime(true);
+$time = $time_end - $time_start;
+
+print "Save Tree $time seconds\n";

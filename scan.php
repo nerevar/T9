@@ -1,107 +1,134 @@
-<pre>
 <?php
 
-require_once('tree.php');
+	// TODO: check parent of each letter to find meaningful words
 
-if (!function_exists('d')) {
+	require_once('tree.php');
+	require_once('log.php');
+
+	define('NODE_SIZE', 6);
+
 	/**
-	 * Выводит информацию о переменной
-	 * @param object $var
-	 * @return
+	 * Parse string node
+	 * @param $node
+	 * @return array
 	 */
-	function d($var, $exit = FALSE) {
-		print "<pre>" . print_r($var, TRUE) . "</pre>" . "\n";
+	function extract_node($node) {
+		$arr = unpack('L', substr($node,2,4));
 
-		if ($exit) {
-			die;
-		}
-	}
-}
-
-if (!function_exists('dp')) {
-	/**
-	 * Выводит информацию о переменной
-	 * @param object $var
-	 * @return
-	 */
-	function dp($var, $exit = FALSE) {
-		print "<pre class='tree'>";
-			dp_sym($var, '');
-		print "</pre>";
-
-		if ($exit) {
-			die;
-		}
+		return array(
+			$node[0], // letter
+			$node[1] == '+' || $node[1] == '*', // last char
+			$node[1] == '*' || $node[1] == '/', // last leaf
+			$arr[1]
+		);
 	}
 
-	function dp_sym($tree, $spaces) {
-		print $spaces;
-		if ($tree->last) print "<b>";
-		print $tree->letter;
-		if ($tree->last) print "</b>";
+	/**
+	 * Filename with serialized tree
+	 */
+	$filename = 'tree_b.txt';
+
+	/**
+	 * Search digital string
+	 */
+	$search = $_REQUEST['search'];
+
+	$fp = fopen($filename, "rb");
+	$node = fread($fp, NODE_SIZE); // !
+
+	list($letter, $is_last_char, $is_last_leaf, $limit) = extract_node($node);
+
+	/**
+	 * Current tree level (the same as a letter position in $search string)
+	 */
+	$level = 0;
+
+	/**
+	 * Count of children of each level
+	 */
+	$count_children_total = array('-1' => $limit);
+	/**
+	 * Count of children on current tree node
+	 */
+	$count_children_current = array();
+
+	/**
+	 * Temporary storage for found letters.
+	 */
+	$stack = array();
+
+	/**
+	 * Array of found words for $search digit string
+	 */
+	$words = array();
+
+	while(!feof($fp) && $node = fread($fp, NODE_SIZE)) {
+		// parse current node
+		list($letter, $is_last_char, $is_last_leaf, $count) = extract_node($node);
+
+		// counts of children
+		$count_children_total[$level] = $count;
+		$count_children_current[$level] = !empty($count_children_current[$level]) ? $count_children_current[$level] + 1 : 1;
+
+		/*
+		print $level. ' ';
+
+		for ($t = 0; $t < $level; $t++) {
+			print "__";
+		}
+		print $letter . ' = ' . $search[$level] . ' (' . ftell($fp) . ') ';
+		print ' | ' . $count;
+		print '     ('.$count_children_current[$level] . '/' . $count_children_total[$level-1] . ')';
 		print "\n";
-		if (!empty($tree->children)) {
-			$spaces = '|-' . $spaces;
-			foreach ($tree->children as $child) {
-				dp_sym($child, $spaces);
+		//*/
+
+		if (in_array($letter, $numbers[$search[$level]])) {
+			// found needed letter in tree node
+
+			$stack[$level] = $letter;
+
+			if ($is_last_char && ($level == strlen($search) - 1)) {
+				// Bingo! We found word
+				$words[] = implode('', $stack);
+
+				// read all remain children of parent node and goto next parent sibling
+				fseek($fp, $count * NODE_SIZE, SEEK_CUR);
+				$count_children_current[$level] += $count;
+				fseek($fp, ($count_children_total[$level-1] - $count_children_current[$level]) * NODE_SIZE, SEEK_CUR);
+				$level--;
+
+			} else {
+				// found same string for digit $search, but it's not a word
+				if ($level == strlen($search) - 1) {
+
+					// read all remain children of parent node and goto next parent sibling
+					fseek($fp, $count * NODE_SIZE, SEEK_CUR);
+					$count_children_current[$level] += $count;
+					fseek($fp, ($count_children_total[$level-1] - $count_children_current[$level]) * NODE_SIZE, SEEK_CUR);
+					$level--;
+				} else {
+					// goto next tree level
+					$count_children_current[$level] += $count;
+					$level++;
+					$count_children_current[$level] = 0;
+				}
+			}
+		} else {
+			if ($is_last_leaf) {
+				// read all remain children of parent node and goto next parent sibling
+				fseek($fp, $count * NODE_SIZE, SEEK_CUR);
+				$count_children_current[$level] += $count;
+				fseek($fp, ($count_children_total[$level-1] - $count_children_current[$level]) * NODE_SIZE, SEEK_CUR);
+				$level--;
+			} else {
+				// just read next sibling of current node
+				fseek($fp, $count * NODE_SIZE, SEEK_CUR);
+				$count_children_current[$level] += $count;
 			}
 		}
 	}
-}
 
-/**
- * Парсит строковую ноду
- * @param $node
- * @return array
- */
-function extract_node($node) {
-	$arr = unpack('L', substr($node,2,4));
+	d($search);
+	d($words);
 
-	return array(
-		$node[0],
-		$node[1] == '+',
-		$arr[1]
-	);
-}
-
-define('NODE_SIZE', 6);
-
-$filename = 'tree_b.txt';
-
-$search = 'against';
-//$search = 'number';
-
-$pointer = 0;
-
-$fp = fopen($filename, "rb");
-$node = fread($fp, NODE_SIZE); // !
-$pointer += NODE_SIZE;
-
-list($letter, $is_last, $total) = extract_node($node);
-
-$is_found_letter = FALSE;
-
-$letter_position = 0;
-
-while(!feof($fp) && $node = fread($fp, NODE_SIZE)) {
-	$pointer += NODE_SIZE;
-	list($letter, $is_last, $count) = extract_node($node);
-
-	if ($letter == $search[$letter_position]) {
-		$is_found_letter = TRUE;
-		$letter_position++;
-
-		print ' <b>'.$letter . '</b> ';
-
-		if ($letter_position == strlen($search)) {
-			print 'Bingo!';
-			break;
-		}
-
-	} else {
-		print ' '.$letter . ' ';
-		fseek($fp, $count * NODE_SIZE, SEEK_CUR);
-	}
-}
-
-fclose($fp);
+	fclose($fp);

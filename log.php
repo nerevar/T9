@@ -1,5 +1,20 @@
 <?php
 
+if (!function_exists('d')) {
+	/**
+	 * Shows variable value
+	 * @param object $var
+	 * @return
+	 */
+	function d($var, $exit = FALSE) {
+		print "<pre>" . print_r($var, TRUE) . "</pre>" . "\n";
+
+		if ($exit) {
+			die;
+		}
+	}
+}
+
 /**
  * Shows html tree
  * @param object $var
@@ -27,7 +42,7 @@ function dp_sym($tree, $spaces) {
 	if ($tree->last) print "</b>";
 	print "\n";
 	if (!empty($tree->children)) {
-		$spaces = '|-' . $spaces;
+		$spaces = '  ' . $spaces;
 		foreach ($tree->children as $child) {
 			dp_sym($child, $spaces);
 		}
