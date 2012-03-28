@@ -1,9 +1,7 @@
 <?php
 
-	// TODO: check parent of each letter to find meaningful words
-
-	require_once('tree.php');
-	require_once('log.php');
+	require_once('classes/tree.php');
+	require_once('classes/log.php');
 
 	define('NODE_SIZE', 6);
 
@@ -26,12 +24,23 @@
 	/**
 	 * Filename with serialized tree
 	 */
-	$filename = 'tree_b.txt';
+	$filename = 'tree.txt';
+
+	/**
+	 * Array of found words for $search digit string
+	 */
+	$words = array();
 
 	/**
 	 * Search digital string
 	 */
-	$search = $_REQUEST['search'];
+	$search = (string)intval($_REQUEST['search']);
+	$search = str_replace('0', '', $search);
+
+	if (empty($search)) {
+		include('templates/results.tpl.php');
+		return;
+	}
 
 	$fp = fopen($filename, "rb");
 	$node = fread($fp, NODE_SIZE); // !
@@ -57,11 +66,6 @@
 	 */
 	$stack = array();
 
-	/**
-	 * Array of found words for $search digit string
-	 */
-	$words = array();
-
 	while(!feof($fp) && $node = fread($fp, NODE_SIZE)) {
 		// parse current node
 		list($letter, $is_last_char, $is_last_leaf, $count) = extract_node($node);
@@ -69,18 +73,6 @@
 		// counts of children
 		$count_children_total[$level] = $count;
 		$count_children_current[$level] = !empty($count_children_current[$level]) ? $count_children_current[$level] + 1 : 1;
-
-		/*
-		print $level. ' ';
-
-		for ($t = 0; $t < $level; $t++) {
-			print "__";
-		}
-		print $letter . ' = ' . $search[$level] . ' (' . ftell($fp) . ') ';
-		print ' | ' . $count;
-		print '     ('.$count_children_current[$level] . '/' . $count_children_total[$level-1] . ')';
-		print "\n";
-		//*/
 
 		if (in_array($letter, $numbers[$search[$level]])) {
 			// found needed letter in tree node
@@ -128,7 +120,6 @@
 		}
 	}
 
-	d($search);
-	d($words);
-
 	fclose($fp);
+
+	include('templates/results.tpl.php');
