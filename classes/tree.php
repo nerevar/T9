@@ -81,6 +81,7 @@
 	);
 
 	$numbers = array(
+		0 => array(),
 		1 => array("'"),
 		2 => array('a', 'b', 'c'),
 		3 => array('d', 'e', 'f'),
