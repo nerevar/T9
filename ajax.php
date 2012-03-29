@@ -34,8 +34,7 @@
 	/**
 	 * Search digital string
 	 */
-	$search = (string)intval($_REQUEST['search']);
-	$search = str_replace('0', '', $search);
+	$search = preg_replace('#[^\d]+#i', '', $_REQUEST['search']);
 
 	if (empty($search)) {
 		include('templates/results.tpl.php');
@@ -121,5 +120,7 @@
 	}
 
 	fclose($fp);
+
+	@file_put_contents('log.txt', $search . "\n", FILE_APPEND);
 
 	include('templates/results.tpl.php');
