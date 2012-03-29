@@ -8,3 +8,11 @@ TODO: optimize responsive markup for mobile
 TODO: preciously describe project
 TODO: predict words (don't show empty words list for shorten sequence)
 TODO: check parent of each letter to find meaningful words
+
+
+Predict algorithm:
+мне кажется телефоны работают так.
+1. сначало слова которые полностью совпадают по длинне.
+2. если таких слов нету, 
+то показываем "огрызки"
+3. если конечных вариантов не много, то предлогаем сразу все варианты (ну типа как гугл подсказывает, по началу фразы)
