@@ -1,7 +1,10 @@
 T9 algorithm implementation.
 
-TODO: check parent of each letter to find meaningful words
-TODO: add Russian language
+TODO: add obvious picture with digits with related letters
+TODO: add Russian language tree
+TODO: add Russian translation
 TODO: add virtual digits keyboard
 TODO: optimize responsive markup for mobile
 TODO: preciously describe project
+TODO: predict words (don't show empty words list for shorten sequence)
+TODO: check parent of each letter to find meaningful words
