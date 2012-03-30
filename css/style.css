@@ -9,3 +9,13 @@
 #centered {
 	margin: 20% auto;
 }
+.clear {
+	clear: both;
+}
+table.table-left {
+	float: left;
+	width: 50%;
+}
+table.table-right {
+	width: 50%;
+}

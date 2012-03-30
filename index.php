@@ -51,8 +51,8 @@
 		<div class="span6 offset3">
 			<h1>T9 algorithm v1.0</h1>
 			<p>Here you can convert any digit sequence into English words.</p>
-			<form method="post" action="/ajax.php" id="search" class="form-inline form-search">
-				<input type="text" name="search" class="input-xxlarge-responsive search-query" placeholder="Enter some digits..." autocomplete="off" />
+			<form method="post" action="/ajax.php" id="search_form" class="form-inline form-search">
+				<input type="text" name="search" id="search" class="input-xxlarge-responsive search-query" placeholder="Enter some digits..." autocomplete="off" />
 				<button type="submit" class="btn" value="search"><i class="icon-search"></i></button>
 			</form>
 			<div id="results"></div>

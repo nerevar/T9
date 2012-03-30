@@ -78,9 +78,9 @@
 
 	$time_start = microtime(true);
 
-	$filename = 'words.txt';
+	$filename = 'words_rus.txt';
 
-	if (!file_exists(filename)) {
+	if (!file_exists($filename)) {
 		print 'File '. $filename . ' not exists!';
 		return;
 	}
@@ -112,12 +112,10 @@
 
 	print "Create Tree $time seconds\n";
 
-	dp($tree);
-
 	$time_start = microtime(true);
 
 	// saves binary serialized tree to file
-	$fp = fopen('tree_b.txt', 'w+b');
+	$fp = fopen('tree_rus.txt', 'w+b');
 	save_tree($tree, $fp);
 	fclose($fp);
 
@@ -125,3 +123,5 @@
 	$time = $time_end - $time_start;
 
 	print "Save Tree $time seconds\n";
+
+	dp($tree);

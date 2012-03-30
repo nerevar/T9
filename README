@@ -1,7 +1,21 @@
 T9 algorithm implementation.
 
+=============================================================================
+
+Russian words vocabulary.
+Source file size: 1,91 Mb == 1965,40 Kb == 2012571 b
+Output file size: 4,06 Mb == 4162,59 Kb == 4262502 b
+Total words: 161K
+
+Scan whole file in RAM and iterate each line (each word) and recursively create Trie (prefix tree) with letter as an identifier of a tree node took 239.291070938 seconds using AMD Athlon 64 X2 Dual Core Processor 6000+ (2 CPUs), ~3.1GHz, Memory: 3072MB RAM, Windows 7 Pro x86, Open-server (http:/open-server.ru/)
+Then recursively save tree to serialized file took 861.490472078 seconds 
+
+=============================================================================
+Roadmap:
+
++ focus search input on load
++ add Russian language tree
 TODO: add obvious picture with digits with related letters
-TODO: add Russian language tree
 TODO: add Russian translation
 TODO: add virtual digits keyboard
 TODO: optimize responsive markup for mobile
