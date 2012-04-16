@@ -20,8 +20,7 @@
 	<link rel="stylesheet" href="css/style.css">
 
 	<!--[if lt IE 9]>
-	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<script>window.html5 || document.write('<script src="js/libs/html5.js"><\/script>')</script>
+		<script src="/js/libs/html5.js"></script>
 	<![endif]-->
 </head>
 <body>
@@ -48,12 +47,70 @@
 
 <div class="container">
 	<div class="row" id="centered">
-		<div class="span6 offset3">
-			<h1>T9 algorithm v1.0</h1>
-			<p>Here you can convert any digit sequence into English words.</p>
+		<div class="span2">
+			<figure class="keyboard">
+				<button>
+					<span class="num">1</span>
+				</button>
+				<button>
+					<span class="num">2</span>
+					<span class="en">abc</span>
+					<span class="ru">абвг</span>
+				</button>
+				<button>
+					<span class="num">3</span>
+					<span class="en">def</span>
+					<span class="ru">дежз</span>
+				</button>
+				<button>
+					<span class="num">4</span>
+					<span class="en">ghi</span>
+					<span class="ru">ийкл</span>
+				</button>
+				<button>
+					<span class="num">5</span>
+					<span class="en">jkl</span>
+					<span class="ru">мноп</span>
+				</button>
+				<button>
+					<span class="num">6</span>
+					<span class="en">mno</span>
+					<span class="ru">рсту</span>
+				</button>
+				<button>
+					<span class="num">7</span>
+					<span class="en">pqrs</span>
+					<span class="ru">фхцч</span>
+				</button>
+				<button>
+					<span class="num">8</span>
+					<span class="en">tuv</span>
+					<span class="ru">шщъы</span>
+				</button>
+				<button>
+					<span class="num">9</span>
+					<span class="en">wxyz</span>
+					<span class="ru">ьэюя</span>
+				</button>
+				<button>
+					<span class="num">*</span>
+				</button>
+				<button>
+					<span class="num">0</span>
+				</button>
+				<button>
+					<span class="num">#</span>
+				</button>
+			</figure>
+		</div>
+		<div class="span6 offset1">
+			<h1>T9 algorithm v2.0</h1>
+			<p>Here you can convert any digit sequence into English or Russian words.</p>
 			<form method="post" action="/ajax.php" id="search_form" class="form-inline form-search">
-				<input type="text" name="search" id="search" class="input-xxlarge-responsive search-query" placeholder="Enter some digits..." autocomplete="off" />
-				<button type="submit" class="btn" value="search"><i class="icon-search"></i></button>
+				<div class="control-group">
+					<input type="text" name="search" id="search" class="input-xxlarge-responsive search-query" placeholder="Enter some digits..." autocomplete="off" />
+					<button type="submit" class="btn" value="search"><i class="icon-search"></i></button>
+				</div>
 			</form>
 			<div id="results"></div>
 		</div>

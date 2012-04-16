@@ -15,8 +15,8 @@
 
 		return array(
 			$node[0], // letter
-			$node[1] == '+' || $node[1] == '*', // last char
-			$node[1] == '*' || $node[1] == '/', // last leaf
+			($node[1] == '+' || $node[1] == '*') ? 1 : 0, // last char
+			($node[1] == '*' || $node[1] == '/') ? 1 : 0, // last leaf
 			$arr[1]
 		);
 	}
@@ -37,9 +37,9 @@
 	/**
 	 * Search digital string
 	 */
-	$search = preg_replace('#[^\d]+#i', '', $_REQUEST['search']);
+	$search = preg_replace('#[^\d]+#i', '', !empty($_REQUEST['search']) ? $_REQUEST['search'] : '');
 
-	if (empty($search)) {
+	if (! $search) {
 		include('templates/results.tpl.php');
 		return;
 	}
@@ -60,6 +60,7 @@
 		 * Count of children of each level
 		 */
 		$count_children_total = array('-1' => $limit);
+
 		/**
 		 * Count of children on current tree node
 		 */
@@ -73,7 +74,7 @@
 		while(!feof($fp) && $node = fread($fp, NODE_SIZE)) {
 			// parse current node
 			list($letter, $is_last_char, $is_last_leaf, $count) = extract_node($node);
-			
+
 			// counts of children
 			$count_children_total[$level] = $count;
 			$count_children_current[$level] = !empty($count_children_current[$level]) ? $count_children_current[$level] + 1 : 1;
@@ -81,9 +82,10 @@
 			if (in_array($letter, $numbers[$lang][$search[$level]])) {
 				// found needed letter in tree node
 
-				$stack[$level] = $letter;
-
 				if ($is_last_char && ($level == strlen($search) - 1)) {
+				
+					$stack[$level] = $letter;
+
 					// Bingo! We found word
 					$word = implode('', $stack);
 					
@@ -98,7 +100,6 @@
 					$count_children_current[$level] += $count;
 					fseek($fp, ($count_children_total[$level-1] - $count_children_current[$level]) * NODE_SIZE, SEEK_CUR);
 					$level--;
-
 				} else {
 					// found same string for digit $search, but it's not a word
 					if ($level == strlen($search) - 1) {
@@ -109,6 +110,9 @@
 						fseek($fp, ($count_children_total[$level-1] - $count_children_current[$level]) * NODE_SIZE, SEEK_CUR);
 						$level--;
 					} else {
+
+						$stack[$level] = $letter;
+
 						// goto next tree level
 						$count_children_current[$level] += $count;
 						$level++;
@@ -127,6 +131,11 @@
 					fseek($fp, $count * NODE_SIZE, SEEK_CUR);
 					$count_children_current[$level] += $count;
 				}
+			}
+
+			// go down to root of tree
+			while ($level > 0 && $count_children_total[$level-1] - $count_children_current[$level] == 0) {
+				$level--;
 			}
 		}
 

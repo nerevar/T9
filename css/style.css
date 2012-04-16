@@ -19,3 +19,39 @@ table.table-left {
 table.table-right {
 	width: 50%;
 }
+
+.keyboard {
+	width: 195px;
+}
+.keyboard button {
+	width: 61px;
+	height: 40px;
+	margin-bottom: 5px;
+	padding: 0px;
+	text-align: left;
+}
+.keyboard button span {
+	display: block;
+}
+.keyboard button .num {
+	float: left;
+	line-height: 35px;
+	font-family: Verdana;
+	font-weight: bold;
+	font-size: 18px;
+	padding-left: 2px;
+	color: #696969;
+}
+.keyboard button .en,
+.keyboard button .ru {
+	margin-left: 17px;
+	font-family: Verdana;
+	line-height: 16px;
+	font-size: 11px;
+}
+.keyboard button .en {
+	color: #1B5DEA;
+}
+.keyboard button .ru {
+	color: #FF7070;
+}

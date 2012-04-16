@@ -15,14 +15,15 @@ Roadmap:
 
 + focus search input on load
 + add Russian language tree
++ check parent of each letter to find meaningful words
+
 TODO: add obvious picture with digits with related letters
 TODO: add Russian translation
 TODO: add virtual digits keyboard
 TODO: optimize responsive markup for mobile
 TODO: preciously describe project
 TODO: predict words (don't show empty words list for shorten sequence)
-TODO: check parent of each letter to find meaningful words
-
+TODO: use space to separate words
 
 Predict algorithm:
 мне кажется телефоны работают так.

@@ -40,6 +40,9 @@
 		if ($tree->last) print "<b>";
 		print $tree->letter;
 		if ($tree->last) print "</b>";
+
+		print ' ' . $tree->from;
+
 		print "\n";
 		if (!empty($tree->children)) {
 			$spaces = '  ' . $spaces;
