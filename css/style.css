@@ -12,6 +12,9 @@
 .clear {
 	clear: both;
 }
+#results {
+	font-family: Consolas, "Andale Mono", "Lucida Console", "Liberation Mono", "Courier New", Courier, monospace;
+}
 table.table-left {
 	float: left;
 	width: 50%;
@@ -32,6 +35,9 @@ table.table-right {
 }
 .keyboard button span {
 	display: block;
+}
+.keyboard button span.two-line {
+	line-height: 35px;
 }
 .keyboard button .num {
 	float: left;

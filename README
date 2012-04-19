@@ -16,16 +16,19 @@ Roadmap:
 + focus search input on load
 + add Russian language tree
 + check parent of each letter to find meaningful words
++ use space to separate words
+- add obvious picture with digits with related letters
++ add virtual digits keyboard
++ optimize responsive markup for mobile
 
-TODO: add obvious picture with digits with related letters
 TODO: add Russian translation
-TODO: add virtual digits keyboard
-TODO: optimize responsive markup for mobile
 TODO: preciously describe project
 TODO: predict words (don't show empty words list for shorten sequence)
-TODO: use space to separate words
 
-Predict algorithm:
+
+
+
+btw predict algorithm:
 мне кажется телефоны работают так.
 1. сначало слова которые полностью совпадают по длинне.
 2. если таких слов нету, 

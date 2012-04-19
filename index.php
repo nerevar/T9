@@ -51,6 +51,7 @@
 			<figure class="keyboard">
 				<button>
 					<span class="num">1</span>
+					<span class="en two-line">&nbsp;&nbsp;.,?!</span>
 				</button>
 				<button>
 					<span class="num">2</span>
@@ -97,9 +98,12 @@
 				</button>
 				<button>
 					<span class="num">0</span>
+					<span class="en two-line">&nbsp;&nbsp;&nbsp;␣</span>
 				</button>
-				<button>
-					<span class="num">#</span>
+				<button class="del">
+					<span class="num">&larr;</span>
+					<span class="en">back</span>
+					<span class="ru">удал.</span>
 				</button>
 			</figure>
 		</div>

@@ -27,12 +27,18 @@ jQuery(document).ready(function($){
 		}
 	})
 
-	$('.keyboard button').click(function(){
+	$('.keyboard button').not('.del').click(function(){
 		var num = $(this).find('.num').text();
-		if (num >= '2' && num <= '9') {
+		if (num >= '0' && num <= '9') {
 			$('#search').val($('#search').val() + num);
 			$('form#search_form').submit();
 		}
+		$('#search').focus();
+	})
+
+	$('.keyboard button.del').click(function(){
+		$('#search').val($('#search').val().substring(0, $('#search').val().length-1));
+		$('form#search_form').submit();
 		$('#search').focus();
 	})
 });

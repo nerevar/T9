@@ -6,11 +6,31 @@
 	</thead>
 	<tbody>
 		<? if (!empty($words['en']) > 0) { ?>
-			<? foreach ($words['en'] as $word) { ?>
+			<?
+			// find array with maximal words count for each digit sequence
+			$max_size = 0;
+			foreach ($words['en'] as $word_array) {
+				if (count($word_array) > $max_size) {
+					$max_size = count($word_array);
+				}
+			} ?>
+
+			<? for ($i = 0; $i < $max_size; $i++) { ?>
 				<tr>
-					<td><?= $word; ?></td>
+					<td>
+						<? foreach ($words['en'] as $search => $word_array) { ?>
+							<? if (isset($word_array[$i])) { ?>
+								<?= $word_array[$i] ?>
+							<? } else { ?>
+								<? for ($t = 0; $t < strlen($search); $t++) {
+									print '-';
+							} ?>
+							<? } ?>
+						<? } ?>
+					</td>
 				</tr>
 			<? } ?>
+
 		<? } else {?>
 			<tr>
 				<td>-</td>
@@ -27,11 +47,31 @@
 	</thead>
 	<tbody>
 		<? if (!empty($words['ru']) > 0) { ?>
-			<? foreach ($words['ru'] as $word) { ?>
+			<?
+			// find array with maximal words count for each digit sequence
+			$max_size = 0;
+			foreach ($words['ru'] as $word_array) {
+				if (count($word_array) > $max_size) {
+					$max_size = count($word_array);
+				}
+			} ?>
+
+			<? for ($i = 0; $i < $max_size; $i++) { ?>
 				<tr>
-					<td><?= $word; ?></td>
+					<td>
+						<? foreach ($words['ru'] as $search => $word_array) { ?>
+							<? if (isset($word_array[$i])) { ?>
+								<?= $word_array[$i] ?>
+							<? } else { ?>
+								<? for ($t = 0; $t < strlen($search); $t++) {
+									print '-';
+							} ?>
+							<? } ?>
+						<? } ?>
+					</td>
 				</tr>
 			<? } ?>
+
 		<? } else {?>
 			<tr>
 				<td>-</td>
