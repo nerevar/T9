@@ -20,7 +20,7 @@ jQuery(document).ready(function($){
 	});
 
 	$('#search').keyup(function(){
-		if (/([^\d]+)/.test($(this).val())) {
+		if (/([^\d ]+)/.test($(this).val())) {
 			$(this).parent().addClass('error');
 		} else {
 			$(this).parent().removeClass('error');

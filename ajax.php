@@ -37,7 +37,7 @@
 	/**
 	 * Search digital string
 	 */
-	$search_string = preg_replace('#[^\d]+#i', '', !empty($_REQUEST['search']) ? $_REQUEST['search'] : '');
+	$search_string = preg_replace('#[^\d ]+#i', '', !empty($_REQUEST['search']) ? $_REQUEST['search'] : '');
 
 	// split to several words by 0 or 1 or " "(space characters)
 	$search_words = preg_split('#[01 ]+#iu', $search_string);
