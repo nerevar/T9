@@ -4,13 +4,16 @@ T9 algorithm demo http://t9.nerevar.com/
 
 =============================================================================
 
-Russian words vocabulary.
-Source file size: 1,91 Mb == 1965,40 Kb == 2012571 b
-Output file size: 4,06 Mb == 4162,59 Kb == 4262502 b
-Total words: 161K
+English words vocabulary.
+Source file size: 3,59 Mb
+Output file size: 4,05 Mb
+Total words: 330K
 
-Scan whole file in RAM and iterate each line (each word) and recursively create Trie (prefix tree) with letter as an identifier of a tree node took 239.291070938 seconds using AMD Athlon 64 X2 Dual Core Processor 6000+ (2 CPUs), ~3.1GHz, Memory: 3072MB RAM, Windows 7 Pro x86, Open-server (http:/open-server.ru/)
-Then recursively save tree to serialized file took 861.490472078 seconds 
+
+Russian words vocabulary.
+Source file size: 1,91 Mb
+Output file size: 4,06 Mb
+Total words: 161K
 
 =============================================================================
 Roadmap:
