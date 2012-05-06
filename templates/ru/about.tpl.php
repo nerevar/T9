@@ -48,11 +48,6 @@
 				<li>
 					при поиске слов, используется нагруженное дерево (Trie), которое обеспечивает быстрый* поиск искомых слов (<a href="/details">подробнее…</a>)
 				</li>
-
-				<div class="nav pull-right social-block">
-					<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
-					<div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="none" data-yashareQuickServices="vkontakte,facebook,twitter,lj,gplus"></div>
-				</div>
 			</ul>
 		</div>
 	</div>
