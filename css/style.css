@@ -87,3 +87,8 @@ table.table-right {
 .change_language_active {
 	background-color: rgba(0, 0, 0, 0.5);
 }
+
+.nav.social-block {
+	background-color: rgba(0, 0, 0, 0.5);
+	margin-top: 6px !important;
+}

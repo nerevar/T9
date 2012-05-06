@@ -13,6 +13,11 @@
 				<li><a href="#" class="change_language" data-lang="RU"><i class="flag-RU"></i> RU</a></li>
 				<li><a href="#" class="change_language" data-lang="EN"><i class="flag-US"></i> EN</a></li>
 			</ul>
+
+			<div class="nav pull-right social-block">
+				<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+				<div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="none" data-yashareQuickServices="vkontakte,facebook,twitter,lj,gplus"></div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -44,6 +49,10 @@
 					при поиске слов, используется нагруженное дерево (Trie), которое обеспечивает быстрый* поиск искомых слов (<a href="/details">подробнее…</a>)
 				</li>
 
+				<div class="nav pull-right social-block">
+					<script type="text/javascript" src="//yandex.st/share/share.js" charset="utf-8"></script>
+					<div class="yashare-auto-init" data-yashareL10n="ru" data-yashareType="none" data-yashareQuickServices="vkontakte,facebook,twitter,lj,gplus"></div>
+				</div>
 			</ul>
 		</div>
 	</div>
