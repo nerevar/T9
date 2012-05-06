@@ -7,11 +7,33 @@
 }
 
 #centered {
-	margin: 20% auto;
+	margin: 15% auto 5em;
+}
+
+.innertext {
+	margin-top: 5em;
+	font-family: Georgia, Helvetica, sans-serif;
+	font-size: 14px;
+}
+.innertext p {
+	line-height: 1.6em;
+	font-family: Georgia, Helvetica, sans-serif;
+	font-size: 14px;
+}
+.innertext li {
+	line-height: 1.6em;
+}
+
+.underline {
+	text-decoration: underline;
+}
+.tacenter {
+	text-align: center;
 }
 .clear {
 	clear: both;
 }
+
 #results {
 	font-family: Consolas, "Andale Mono", "Lucida Console", "Liberation Mono", "Courier New", Courier, monospace;
 }
@@ -60,4 +82,8 @@ table.table-right {
 }
 .keyboard button .ru {
 	color: #FF7070;
+}
+
+.change_language_active {
+	background-color: rgba(0, 0, 0, 0.5);
 }

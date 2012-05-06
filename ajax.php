@@ -2,6 +2,7 @@
 
 	require_once('classes/tree.php');
 	require_once('classes/log.php');
+	require_once('classes/lang.php');
 
 	define('NODE_SIZE', 6);
 
@@ -46,16 +47,16 @@
 	$search_words = array_filter($search_words, 'strlen');
 
 	if (empty($search_words)) {
-		include('templates/results.tpl.php');
+		include("templates/{$lang}/results.tpl.php");
 		return;
 	}
 
 	foreach ($search_words as $search) {
 
-		foreach ($filenames as $lang => $filename) {
+		foreach ($filenames as $language => $filename) {
 
 			// clears array of words
-			$words[$lang][$search] = array();
+			$words[$language][$search] = array();
 
 			$fp = fopen($filename, "rb");
 			$node = fread($fp, NODE_SIZE); // !
@@ -90,7 +91,7 @@
 				$count_children_total[$level] = $count;
 				$count_children_current[$level] = !empty($count_children_current[$level]) ? $count_children_current[$level] + 1 : 1;
 
-				if (in_array($letter, $numbers[$lang][$search[$level]])) {
+				if (in_array($letter, $numbers[$language][$search[$level]])) {
 					// found needed letter in tree node
 
 					if ($is_last_char && ($level == strlen($search) - 1)) {
@@ -101,10 +102,10 @@
 						$word = implode('', $stack);
 
 						// convert from source 1251 to output utf-8 encoding
-						if ($lang == 'ru') {
+						if ($language == 'ru') {
 							$word = iconv('windows-1251', 'utf-8', $word);
 						}
-						$words[$lang][$search][] = $word;
+						$words[$language][$search][] = $word;
 
 						// read all remain children of parent node and goto next parent sibling
 						fseek($fp, $count * NODE_SIZE, SEEK_CUR);
@@ -155,4 +156,4 @@
 		}
 	}
 
-	include('templates/results.tpl.php');
+	include("templates/{$lang}/results.tpl.php");

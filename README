@@ -25,17 +25,8 @@ Roadmap:
 - add obvious picture with digits with related letters
 + add virtual digits keyboard
 + optimize responsive markup for mobile
++ add Russian translation
++ preciously describe project
 
-TODO: add Russian translation
-TODO: preciously describe project
 TODO: predict words (don't show empty words list for shorten sequence)
-
-
-
-
-btw predict algorithm:
-мне кажется телефоны работают так.
-1. сначало слова которые полностью совпадают по длинне.
-2. если таких слов нету, 
-то показываем "огрызки"
-3. если конечных вариантов не много, то предлогаем сразу все варианты (ну типа как гугл подсказывает, по началу фразы)
+TODO: refactor "is_last_leaf" and "is_last_letter_in_word"

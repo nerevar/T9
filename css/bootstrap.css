@@ -2553,8 +2553,7 @@ button.btn.small, input[type="submit"].btn.small {
   border-right: 1px solid #333333;
 }
 .navbar .nav.pull-right {
-  margin-left: 10px;
-  margin-right: 0;
+  margin-right: 15%;
 }
 .navbar .dropdown-menu {
   margin-top: 1px;

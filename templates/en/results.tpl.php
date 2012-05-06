@@ -15,19 +15,25 @@
 				}
 			} ?>
 
-			<? for ($i = 0; $i < $max_size; $i++) { ?>
-				<tr>
-					<td>
-						<? foreach ($words['en'] as $search => $word_array) { ?>
-							<? if (isset($word_array[$i])) { ?>
-								<?= $word_array[$i] ?>
-							<? } else { ?>
-								<? for ($t = 0; $t < strlen($search); $t++) {
-									print '-';
-							} ?>
+			<? if ($max_size > 0) { ?>
+				<? for ($i = 0; $i < $max_size; $i++) { ?>
+					<tr>
+						<td>
+							<? foreach ($words['en'] as $search => $word_array) { ?>
+								<? if (isset($word_array[$i])) { ?>
+									<?= $word_array[$i] ?>
+								<? } else { ?>
+									<? for ($t = 0; $t < strlen($search); $t++) {
+										print '-';
+								} ?>
+								<? } ?>
 							<? } ?>
-						<? } ?>
-					</td>
+						</td>
+					</tr>
+				<? } ?>
+			<? } else { ?>
+				<tr>
+					<td>-</td>
 				</tr>
 			<? } ?>
 
@@ -56,19 +62,25 @@
 				}
 			} ?>
 
-			<? for ($i = 0; $i < $max_size; $i++) { ?>
-				<tr>
-					<td>
-						<? foreach ($words['ru'] as $search => $word_array) { ?>
-							<? if (isset($word_array[$i])) { ?>
-								<?= $word_array[$i] ?>
-							<? } else { ?>
-								<? for ($t = 0; $t < strlen($search); $t++) {
-									print '-';
-							} ?>
+			<? if ($max_size > 0) { ?>
+				<? for ($i = 0; $i < $max_size; $i++) { ?>
+					<tr>
+						<td>
+							<? foreach ($words['ru'] as $search => $word_array) { ?>
+								<? if (isset($word_array[$i])) { ?>
+									<?= $word_array[$i] ?>
+								<? } else { ?>
+									<? for ($t = 0; $t < strlen($search); $t++) {
+										print '-';
+								} ?>
+								<? } ?>
 							<? } ?>
-						<? } ?>
-					</td>
+						</td>
+					</tr>
+				<? } ?>
+			<? } else { ?>
+				<tr>
+					<td>-</td>
 				</tr>
 			<? } ?>
 
