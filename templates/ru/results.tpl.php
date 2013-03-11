@@ -5,7 +5,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<? if (!empty($words['ru']) > 0) { ?>
+		<?php if (!empty($words['ru']) > 0) { ?>
 			<?
 			// find array with maximal words count for each digit sequence
 			$max_size = 0;
@@ -15,33 +15,33 @@
 				}
 			} ?>
 
-			<? if ($max_size > 0) { ?>
-				<? for ($i = 0; $i < $max_size; $i++) { ?>
+			<?php if ($max_size > 0) { ?>
+				<?php for ($i = 0; $i < $max_size; $i++) { ?>
 					<tr>
 						<td>
-							<? foreach ($words['ru'] as $search => $word_array) { ?>
-								<? if (isset($word_array[$i])) { ?>
+							<?php foreach ($words['ru'] as $search => $word_array) { ?>
+								<?php if (isset($word_array[$i])) { ?>
 									<?= $word_array[$i] ?>
-								<? } else { ?>
-									<? for ($t = 0; $t < strlen($search); $t++) {
+								<?php } else { ?>
+									<?php for ($t = 0; $t < strlen($search); $t++) {
 										print '-';
 								} ?>
-								<? } ?>
-							<? } ?>
+								<?php } ?>
+							<?php } ?>
 						</td>
 					</tr>
-				<? } ?>
-			<? } else { ?>
+				<?php } ?>
+			<?php } else { ?>
 				<tr>
 					<td>-</td>
 				</tr>
-			<? } ?>
+			<?php } ?>
 
-		<? } else {?>
+		<?php } else {?>
 			<tr>
 				<td>-</td>
 			</tr>
-		<? } ?>
+		<?php } ?>
 	</tbody>
 </table>
 
@@ -52,7 +52,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<? if (!empty($words['en']) > 0) { ?>
+		<?php if (!empty($words['en']) > 0) { ?>
 			<?
 			// find array with maximal words count for each digit sequence
 			$max_size = 0;
@@ -62,33 +62,33 @@
 				}
 			} ?>
 
-			<? if ($max_size > 0) { ?>
-				<? for ($i = 0; $i < $max_size; $i++) { ?>
+			<?php if ($max_size > 0) { ?>
+				<?php for ($i = 0; $i < $max_size; $i++) { ?>
 					<tr>
 						<td>
-							<? foreach ($words['en'] as $search => $word_array) { ?>
-								<? if (isset($word_array[$i])) { ?>
+							<?php foreach ($words['en'] as $search => $word_array) { ?>
+								<?php if (isset($word_array[$i])) { ?>
 									<?= $word_array[$i] ?>
-								<? } else { ?>
-									<? for ($t = 0; $t < strlen($search); $t++) {
+								<?php } else { ?>
+									<?php for ($t = 0; $t < strlen($search); $t++) {
 										print '-';
 								} ?>
-								<? } ?>
-							<? } ?>
+								<?php } ?>
+							<?php } ?>
 						</td>
 					</tr>
-				<? } ?>
-			<? } else { ?>
+				<?php } ?>
+			<?php } else { ?>
 				<tr>
 					<td>-</td>
 				</tr>
-			<? } ?>
+			<?php } ?>
 
-		<? } else {?>
+		<?php } else {?>
 			<tr>
 				<td>-</td>
 			</tr>
-		<? } ?>
+		<?php } ?>
 	</tbody>
 </table>
 

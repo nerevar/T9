@@ -1,4 +1,4 @@
-<?
+<?php
 	require_once('classes/lang.php');
 
 	$action = 'index';

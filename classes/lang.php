@@ -1,4 +1,4 @@
-<?
+<?php
 	/**
 	 * Current site language. Default value
 	 */
